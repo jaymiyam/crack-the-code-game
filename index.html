@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
     <title>Crack The Code</title>
   </head>
   <body>
     <div class="container">
-      <h1>&lt;Crack The Code/ &gt;</h1>
+      <h1>&lt;Crack The Code/&gt;</h1>
       <h2 id="display">0A0B</h2>
       <form>
         <input type="text" name="guess" id="guess" maxlength="4" />
@@ -16,7 +17,7 @@
       </form>
       <div class="history">
         <table>
-          <thead>
+          <thead id="guess-history-header">
             <tr>
               <th>Input</th>
               <th>Output</th>
@@ -56,7 +57,6 @@
         </ul>
       </div>
     </div>
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   </body>
 </html>

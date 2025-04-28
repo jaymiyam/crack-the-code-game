@@ -2,6 +2,7 @@ const display = document.getElementById('display');
 const guess = document.getElementById('guess');
 const form = document.querySelector('form');
 const guessHistory = document.getElementById('guess-history');
+const guessHistoryHeader = document.getElementById('guess-history-header');
 let codeArr = [];
 let codeString = '';
 let ACount = 0;
@@ -27,7 +28,7 @@ function checkAnswer(e) {
   const guessString = guess.value;
 
   if (guessString == '' || isNaN(guessString)) {
-    alert('Please input a 4-digit number sequence!');
+    alert('Please input a 4-digit number sequence between 1 to 9!');
     guess.value = '';
     return;
   }
@@ -45,6 +46,11 @@ function checkAnswer(e) {
   checkPosition(codeArr, guessArr);
 
   display.innerText = `${ACount}A${BCount}B`;
+
+  if (guessHistoryHeader.className === '') {
+    guessHistoryHeader.classList.add('show');
+  }
+
   let currentGuessResult = document.createElement('tr');
   currentGuessResult.innerHTML = `
     <td>${guessString}</td>
@@ -63,7 +69,7 @@ function checkIncludes(codeArr, guessArr) {
     if (codeArr.includes(guessArr[i])) {
       BCount++;
     } else {
-      console.log('not a match');
+      return;
     }
   }
 }

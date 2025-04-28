@@ -15,6 +15,10 @@ html {
 body {
   background-color: #011f26;
   color: #fff;
+}
+
+.container {
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +31,12 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-top: 3rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
 }
 
 form {
@@ -60,6 +69,14 @@ input {
   outline: none;
 }
 
+#guess-history-header {
+  display: none;
+}
+
+#guess-history-header.show {
+  display: block;
+}
+
 button {
   font-family: inherit;
   background-color: #fff;
@@ -89,6 +106,20 @@ td {
   margin: 0.5rem 1rem;
 }
 
-ul {
+.how-to-play > ul {
   list-style-type: square;
+  list-style-position: inside;
+}
+
+.how-to-play {
+  margin-block: 1rem;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .how-to-play {
+    font-size: 14px;
+  }
 }
