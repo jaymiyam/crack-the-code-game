@@ -27,11 +27,21 @@ function checkAnswer(e) {
   e.preventDefault();
   const guessString = guess.value;
 
+  // check if guess input is empty or not a number
   if (guessString == '' || isNaN(guessString)) {
-    alert('Please input a 4-digit number sequence between 1 to 9!');
+    alert('Please input a 4-digit code sequence between 1 to 9!');
     guess.value = '';
     return;
   }
+
+  // check if guess input has duplicating digits
+  if (checkForDuplicates(guessString)) {
+    alert('The code sequence must not have duplicating digits!');
+    guess.value = '';
+    return;
+  }
+
+  // create an array if both validation passes
   const guessArr = guessString.split('');
 
   if (codeString === guessString) {
@@ -61,6 +71,8 @@ function checkAnswer(e) {
   guess.value = '';
 }
 
+// TODO: checking logic flaw
+
 function checkIncludes(codeArr, guessArr) {
   //reset count for every guess
   BCount = 0;
@@ -68,8 +80,6 @@ function checkIncludes(codeArr, guessArr) {
   for (let i = 0; i < codeArr.length; i++) {
     if (codeArr.includes(guessArr[i])) {
       BCount++;
-    } else {
-      return;
     }
   }
 }
@@ -82,16 +92,28 @@ function checkPosition(codeArr, guessArr) {
     if (codeArr[i] === guessArr[i]) {
       ACount++;
       BCount--;
-    } else {
-      return;
     }
   }
 }
 
-form.addEventListener('submit', checkAnswer);
+function checkForDuplicates(string) {
+  let set = new Set();
+  let duplicate = false;
+
+  for (let i = 0; i < string.length; i++) {
+    if (set.has(string[i])) {
+      duplicate = true;
+      break;
+    }
+    set.add(string[i]);
+  }
+
+  return duplicate;
+}
 
 //confetti animation
-
 function makeConfetti() {
   confetti();
 }
+
+form.addEventListener('submit', checkAnswer);
